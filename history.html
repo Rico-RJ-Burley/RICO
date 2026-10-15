@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<!--
+  history.html - History of Web Servers
+  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  The header, main menu and footer are the same on every page.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The history of web servers from CERN in 1989 to cloud and edge computing.">
+  <title>History of Web Servers | Web Servers</title>
+  <!-- IBM Plex font from Google Fonts (falls back to system fonts if it can't load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <!-- The one and only stylesheet for the whole site -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== Site header: title + main menu (same on every page) ===== -->
+  <header id="site-header">
+    <div class="brand">
+      <a class="site-title" href="index.html">Web Servers</a>
+      <!-- Shows the HTTP request a browser would send for this page -->
+      <p class="request-line"><span class="method">GET</span> /history.html <span class="status">200 OK</span></p>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="basics.html">Basics</a></li>
+        <li><a href="history.html" class="current" aria-current="page">History</a></li>
+        <li><a href="software.html">Server Software</a></li>
+        <li><a href="security.html">Security &amp; Speed</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main content for this page ===== -->
+  <main id="content">
+
+    <h1>History of Web Servers</h1>
+    <p class="lead">What started as one computer in a science lab in 1990 is now a global network of servers powering the whole internet.</p>
+
+    <section>
+      <h2>The Origins (1989&ndash;1993)</h2>
+      <ol class="timeline">
+        <li><span class="year">1989</span> <strong>The big idea.</strong> Tim Berners-Lee at CERN wrote a proposal for a system to share information between researchers. His boss wrote &ldquo;Vague but exciting&rdquo; on it and approved it.</li>
+        <li><span class="year">1990</span> <strong>The first web server.</strong> Berners-Lee built the first web server on a computer at CERN, with a note taped to it reading &ldquo;DO NOT POWER IT DOWN!!&rdquo;</li>
+        <li><span class="year">1991</span> <strong>The first website.</strong> <a href="http://info.cern.ch/">info.cern.ch</a> went live, explaining what the World Wide Web was. It is still online today.</li>
+        <li><span class="year">1993</span> <strong>Free for everyone.</strong> CERN released the web technology into the public domain, with no cost and no patents, so anyone could build on it.</li>
+        <li><span class="year">1993</span> <strong>More servers appear.</strong> NCSA at the University of Illinois released free web server software, letting schools and businesses host their own sites.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Rapid Growth (1994&ndash;2000)</h2>
+      <ol class="timeline">
+        <li><span class="year">1994</span> <strong>Secure websites arrive.</strong> Netscape created SSL to encrypt web traffic, which made online shopping possible.</li>
+        <li><span class="year">1995</span> <strong>Apache is born.</strong> Developers shared fixes for the NCSA server by email. Their improved version, Apache, soon became the world&rsquo;s most popular web server.</li>
+        <li><span class="year">1995</span> <strong>Microsoft joins in.</strong> Microsoft released IIS for Windows, and large companies began using it for business websites.</li>
+        <li><span class="year">1996</span> <strong>Rules are written down.</strong> HTTP/1.0 was documented, making browser-server communication more organized.</li>
+        <li><span class="year">1999</span> <strong>Faster communication.</strong> HTTP/1.1 let browsers and servers keep connections open longer, loading pages faster.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>The Modern Era (2004&ndash;Today)</h2>
+      <ol class="timeline">
+        <li><span class="year">2004</span> <strong>A faster server arrives.</strong> Igor Sysoev in Russia released Nginx (&ldquo;engine-x&rdquo;) to handle huge numbers of visitors at once.</li>
+        <li><span class="year">2006</span> <strong>The cloud changes everything.</strong> Amazon Web Services let businesses rent virtual servers instead of buying physical ones.</li>
+        <li><span class="year">2009</span> <strong>JavaScript on the server.</strong> Node.js let developers use JavaScript for both the front end and the server.</li>
+        <li><span class="year">2015</span> <strong>Websites get faster.</strong> HTTP/2 let browsers request many files at once over one connection.</li>
+        <li><span class="year">2020+</span> <strong>Servers go to the edge.</strong> Servers spread to thousands of locations worldwide, so pages load quickly wherever you are.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Looking Ahead</h2>
+      <ul>
+        <li><strong>HTTP/3</strong> works much better on mobile and slow connections.</li>
+        <li><strong>Edge computing</strong> moves servers closer to users.</li>
+        <li><strong>AI</strong> helps detect attacks and predict when more capacity is needed.</li>
+        <li><strong>WebAssembly</strong> lets servers run code written in almost any language at high speed.</li>
+        <li><strong>Green energy</strong>: major tech companies plan to run data centers on renewable energy.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- ===== Footer with the class project note (same on every page) ===== -->
+  <footer id="site-footer">
+    <p>This website is a class project for IT 3203 at Kennesaw State University.</p>
+    <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+    <p>&copy; 2026 Rico Burley</p>
+  </footer>
+
+</body>
+</html>

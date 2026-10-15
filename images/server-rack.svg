@@ -1,0 +1,18 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 320 300" role="img" aria-labelledby="t">
+  <title id="t">Illustration of a server rack with status lights</title>
+  <rect x="60" y="10" width="200" height="280" rx="8" fill="#16233a"/>
+  <g font-family="monospace" font-size="11" fill="#8fd3da">
+    <rect x="75" y="30" width="170" height="50" rx="4" fill="#24365a"/>
+    <rect x="75" y="95" width="170" height="50" rx="4" fill="#24365a"/>
+    <rect x="75" y="160" width="170" height="50" rx="4" fill="#24365a"/>
+    <rect x="75" y="225" width="170" height="50" rx="4" fill="#24365a"/>
+    <text x="88" y="60">web-01</text><text x="88" y="125">web-02</text>
+    <text x="88" y="190">db-01</text><text x="88" y="255">cache-01</text>
+  </g>
+  <g>
+    <circle cx="200" cy="55" r="6" fill="#4ade80"/><circle cx="222" cy="55" r="6" fill="#4ade80"/>
+    <circle cx="200" cy="120" r="6" fill="#4ade80"/><circle cx="222" cy="120" r="6" fill="#fbbf24"/>
+    <circle cx="200" cy="185" r="6" fill="#4ade80"/><circle cx="222" cy="185" r="6" fill="#4ade80"/>
+    <circle cx="200" cy="250" r="6" fill="#4ade80"/><circle cx="222" cy="250" r="6" fill="#f97316"/>
+  </g>
+</svg>

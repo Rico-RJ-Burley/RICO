@@ -1,0 +1,146 @@
+<!DOCTYPE html>
+<!--
+  software.html - Web Server Software
+  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  The header, main menu and footer are the same on every page.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="The most popular web server programs: Nginx, Apache, IIS, LiteSpeed and others, and their market share.">
+  <title>Web Server Software | Web Servers</title>
+  <!-- IBM Plex font from Google Fonts (falls back to system fonts if it can't load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <!-- The one and only stylesheet for the whole site -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== Site header: title + main menu (same on every page) ===== -->
+  <header id="site-header">
+    <div class="brand">
+      <a class="site-title" href="index.html">Web Servers</a>
+      <!-- Shows the HTTP request a browser would send for this page -->
+      <p class="request-line"><span class="method">GET</span> /software.html <span class="status">200 OK</span></p>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="basics.html">Basics</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="software.html" class="current" aria-current="page">Server Software</a></li>
+        <li><a href="security.html">Security &amp; Speed</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main content for this page ===== -->
+  <main id="content">
+
+    <h1>Web Server Software</h1>
+    <p class="lead">Several programs can act as a web server. A few of them run most of the internet.</p>
+
+    <section>
+      <h2>Who Uses What Today (2025)</h2>
+      <figure>
+        <img src="images/market-share.svg" alt="Bar chart of web server market share: Nginx 34%, Apache 24%, Cloudflare 21%, IIS 6%, LiteSpeed 5%, Node.js 3%, others 7%" width="620" height="290">
+        <figcaption>Figure 2. Share of websites by web server, based on W3Techs (2025).</figcaption>
+      </figure>
+      <div class="table-wrap">
+        <table>
+          <caption>Web server market share, 2025 (W3Techs)</caption>
+          <thead>
+            <tr><th scope="col">Server</th><th scope="col">Share</th><th scope="col">Known for</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Nginx</td><td>34%</td><td>Speed under heavy traffic; used by Netflix and Airbnb</td></tr>
+            <tr><td>Apache</td><td>24%</td><td>Flexibility and add-on modules; around since 1995</td></tr>
+            <tr><td>Cloudflare</td><td>21%</td><td>Cloud network that protects and speeds up sites</td></tr>
+            <tr><td>Microsoft IIS</td><td>6%</td><td>Built into Windows Server</td></tr>
+            <tr><td>LiteSpeed</td><td>5%</td><td>Fast WordPress hosting</td></tr>
+            <tr><td>Node.js</td><td>3%</td><td>JavaScript servers and real-time apps like chat</td></tr>
+            <tr><td>Others</td><td>7%</td><td>Specialized servers such as Caddy and Tomcat</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p class="note"><strong>Key takeaway:</strong> Nginx has passed Apache as the most-used web server, and cloud-based options like Cloudflare are growing fast.</p>
+    </section>
+
+    <section>
+      <h2>Apache: The Classic</h2>
+      <p>Started in 1995, free and open source, and about 24% of websites.</p>
+      <ul>
+        <li><strong>How it started:</strong> developers emailed each other fixes (&ldquo;patches&rdquo;) for the NCSA server.</li>
+        <li><strong>How it works:</strong> it gives each visitor&rsquo;s request its own process or thread. This works well for most sites but uses more memory under very heavy traffic.</li>
+        <li><strong>Modules:</strong> a huge library of add-ons for security, programming languages and more.</li>
+        <li><strong>Configuration:</strong> text files like <code>httpd.conf</code>, plus <code>.htaccess</code> files that let site owners change settings per folder.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Nginx: The Speed King</h2>
+      <p>Started in 2004, free and open source, and about 34% of websites.</p>
+      <ul>
+        <li><strong>How it started:</strong> Igor Sysoev built it to handle 10,000 visitors at the same time, a problem known as C10K.</li>
+        <li><strong>How it works:</strong> a few worker processes each juggle many visitors at once, like one efficient cashier handling many orders.</li>
+        <li><strong>Traffic director:</strong> often sits in front of other servers as a reverse proxy and load balancer.</li>
+        <li><strong>Real-world users:</strong> Netflix, Airbnb, Dropbox and many other large sites.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Apache vs. Nginx</h2>
+      <div class="table-wrap">
+        <table>
+          <caption>Side-by-side comparison</caption>
+          <thead>
+            <tr><th scope="col"></th><th scope="col">Apache</th><th scope="col">Nginx</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Released</th><td>1995</td><td>2004</td></tr>
+            <tr><th scope="row">Handles visitors by</th><td>A process or thread per connection</td><td>A few event-driven workers</td></tr>
+            <tr><th scope="row">Main strength</th><td>Flexible, huge module library</td><td>Fast, low memory use</td></tr>
+            <tr><th scope="row">Main weakness</th><td>Slows down under extreme traffic</td><td>Less per-folder customization</td></tr>
+            <tr><th scope="row">Config file</th><td><code>httpd.conf</code>, <code>.htaccess</code></td><td><code>nginx.conf</code></td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section>
+      <h2>Other Web Servers</h2>
+      <div class="card-grid">
+        <div class="card"><h3>Microsoft IIS</h3><p>Microsoft&rsquo;s server, built into Windows. Popular with companies already using Microsoft tools.</p></div>
+        <div class="card"><h3>LiteSpeed</h3><p>A commercial server focused on speed that can read Apache&rsquo;s settings. Common with WordPress hosts.</p></div>
+        <div class="card"><h3>Caddy</h3><p>A newer server written in Go that sets up HTTPS automatically for every site.</p></div>
+        <div class="card"><h3>Apache Tomcat</h3><p>A specialized server for websites written in Java, used in large enterprise apps.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Web Servers in the Cloud</h2>
+      <p>Running a site used to mean buying an expensive physical server. Now you can rent one for a few dollars a month.</p>
+      <ul>
+        <li><strong>Amazon Web Services (AWS):</strong> the largest cloud provider; pay only for what you use.</li>
+        <li><strong>Google Cloud:</strong> built on Google&rsquo;s fast global network.</li>
+        <li><strong>Microsoft Azure:</strong> a top choice for businesses already using Windows.</li>
+        <li><strong>Docker containers:</strong> package a web server so it can be started, stopped and moved easily.</li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- ===== Footer with the class project note (same on every page) ===== -->
+  <footer id="site-footer">
+    <p>This website is a class project for IT 3203 at Kennesaw State University.</p>
+    <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+    <p>&copy; 2026 Rico Burley</p>
+  </footer>
+
+</body>
+</html>

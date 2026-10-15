@@ -1,0 +1,116 @@
+<!DOCTYPE html>
+<!--
+  references.html - References &amp; Resources
+  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  The header, main menu and footer are the same on every page.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="References used for the web servers project and resources for learning more.">
+  <title>References &amp; Resources | Web Servers</title>
+  <!-- IBM Plex font from Google Fonts (falls back to system fonts if it can't load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <!-- The one and only stylesheet for the whole site -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== Site header: title + main menu (same on every page) ===== -->
+  <header id="site-header">
+    <div class="brand">
+      <a class="site-title" href="index.html">Web Servers</a>
+      <!-- Shows the HTTP request a browser would send for this page -->
+      <p class="request-line"><span class="method">GET</span> /references.html <span class="status">200 OK</span></p>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="basics.html">Basics</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="software.html">Server Software</a></li>
+        <li><a href="security.html">Security &amp; Speed</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html" class="current" aria-current="page">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main content for this page ===== -->
+  <main id="content">
+
+    <h1>References &amp; Resources</h1>
+    <p class="lead">Sources used for this project, plus good places to keep learning about web servers.</p>
+
+    <section>
+      <h2>References</h2>
+      <ol>
+        <li>MDN Web Docs. &ldquo;What is a web server?&rdquo; <a href="https://developer.mozilla.org/en-US/docs/Learn/Common_questions/Web_mechanics/What_is_a_web_server">developer.mozilla.org</a></li>
+        <li>W3Techs. &ldquo;Usage statistics of web servers.&rdquo; <a href="https://w3techs.com/technologies/overview/web_server">w3techs.com</a></li>
+        <li>Nginx. Official documentation. <a href="https://nginx.org/en/docs/">nginx.org/en/docs</a></li>
+        <li>Apache Software Foundation. Apache HTTP Server Project. <a href="https://httpd.apache.org/">httpd.apache.org</a></li>
+        <li>IETF. RFC 9114, &ldquo;HTTP/3.&rdquo; <a href="https://www.rfc-editor.org/rfc/rfc9114">rfc-editor.org</a></li>
+        <li>OWASP. &ldquo;Web Security Testing Guide.&rdquo; <a href="https://owasp.org/www-project-web-security-testing-guide/">owasp.org</a></li>
+        <li>Cloudflare. Learning Center. <a href="https://www.cloudflare.com/learning/">cloudflare.com/learning</a></li>
+        <li>CERN. &ldquo;The first website.&rdquo; <a href="http://info.cern.ch/">info.cern.ch</a></li>
+        <li>Stenberg, D. &ldquo;HTTP/3 explained.&rdquo; <a href="https://http3-explained.haxx.se/">http3-explained.haxx.se</a></li>
+        <li>Microsoft. IIS documentation. <a href="https://learn.microsoft.com/en-us/iis/">learn.microsoft.com/en-us/iis</a></li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>Learning Resources</h2>
+      <ul>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Web/HTTP/Overview">MDN: An overview of HTTP</a>, a clear beginner introduction to requests and responses.</li>
+        <li><a href="https://nginx.org/en/docs/beginners_guide.html">Nginx Beginner&rsquo;s Guide</a>, which walks through starting Nginx and serving your first files.</li>
+        <li><a href="https://httpd.apache.org/docs/2.4/getting-started.html">Apache: Getting Started</a>, the official first steps for Apache.</li>
+        <li><a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a>, the most important web application security risks.</li>
+        <li><a href="https://docs.github.com/en/pages">GitHub Pages documentation</a>, how this site is hosted.</li>
+        <li><a href="https://ksuweb.github.io/IT3203/">IT 3203 course website</a></li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Quick Reference</h2>
+      <div class="split">
+        <div class="table-wrap">
+          <table>
+            <caption>Standard port numbers</caption>
+            <thead><tr><th scope="col">Port</th><th scope="col">Used for</th></tr></thead>
+            <tbody>
+              <tr><td>80</td><td>HTTP websites</td></tr>
+              <tr><td>443</td><td>HTTPS (secure) websites</td></tr>
+              <tr><td>8080</td><td>Testing and development</td></tr>
+              <tr><td>22</td><td>Remote server access (SSH)</td></tr>
+            </tbody>
+          </table>
+        </div>
+        <div class="table-wrap">
+          <table>
+            <caption>Key configuration files</caption>
+            <thead><tr><th scope="col">Server</th><th scope="col">File</th></tr></thead>
+            <tbody>
+              <tr><td>Apache</td><td><code>httpd.conf</code> / <code>apache2.conf</code></td></tr>
+              <tr><td>Apache</td><td><code>.htaccess</code> (per folder)</td></tr>
+              <tr><td>Nginx</td><td><code>nginx.conf</code></td></tr>
+              <tr><td>IIS</td><td><code>web.config</code> (XML)</td></tr>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer with the class project note (same on every page) ===== -->
+  <footer id="site-footer">
+    <p>This website is a class project for IT 3203 at Kennesaw State University.</p>
+    <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+    <p>&copy; 2026 Rico Burley</p>
+  </footer>
+
+</body>
+</html>

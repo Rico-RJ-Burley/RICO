@@ -1,0 +1,181 @@
+<!DOCTYPE html>
+<!--
+  basics.html - Web Server Basics
+  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  The header, main menu and footer are the same on every page.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="What a web server is, hardware vs. software, static vs. dynamic servers, and how a page request works.">
+  <title>Web Server Basics | Web Servers</title>
+  <!-- IBM Plex font from Google Fonts (falls back to system fonts if it can't load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <!-- The one and only stylesheet for the whole site -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== Site header: title + main menu (same on every page) ===== -->
+  <header id="site-header">
+    <div class="brand">
+      <a class="site-title" href="index.html">Web Servers</a>
+      <!-- Shows the HTTP request a browser would send for this page -->
+      <p class="request-line"><span class="method">GET</span> /basics.html <span class="status">200 OK</span></p>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="basics.html" class="current" aria-current="page">Basics</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="software.html">Server Software</a></li>
+        <li><a href="security.html">Security &amp; Speed</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main content for this page ===== -->
+  <main id="content">
+
+    <h1>Web Server Basics</h1>
+    <p class="lead">A web server stores the files that make up a website and sends them to whoever asks for them.</p>
+
+    <section>
+      <h2>What Is a Web Server?</h2>
+      <p class="note"><strong>The restaurant analogy:</strong> think of a web server like a restaurant kitchen. When you order food (your browser requests a webpage), the kitchen (the web server) takes your order, prepares what you asked for, and sends it out to your table (your screen).</p>
+      <ul>
+        <li><strong>You ask:</strong> your browser requests a webpage from the server.</li>
+        <li><strong>It stores:</strong> the server keeps every file that makes up the site.</li>
+        <li><strong>It delivers:</strong> the server sends back exactly what was requested.</li>
+        <li><strong>Or says no:</strong> if a file is missing, it replies with a <code>404</code> error.</li>
+      </ul>
+    </section>
+
+    <!-- Two-column comparison using the .split grid -->
+    <section>
+      <h2>Hardware vs. Software</h2>
+      <p>The term &ldquo;web server&rdquo; means two things that work together: the physical machine and the program running on it.</p>
+      <div class="split">
+        <div class="card">
+          <h3>Hardware: the physical machine</h3>
+          <ul>
+            <li>The actual computer that runs around the clock</li>
+            <li>Storage for all website files, a fast processor, and a permanent internet connection</li>
+          </ul>
+          <p><em>Like the building and wiring of a store.</em></p>
+        </div>
+        <div class="card">
+          <h3>Software: the computer program</h3>
+          <ul>
+            <li>Reads incoming requests and finds the right files to send back</li>
+            <li>Handles thousands of visitors at once and can be tuned for security and speed</li>
+            <li>Examples: Apache, Nginx, Microsoft IIS</li>
+          </ul>
+          <p><em>Like the staff working inside the store.</em></p>
+        </div>
+      </div>
+    </section>
+
+    <section>
+      <h2>Static vs. Dynamic Web Servers</h2>
+      <div class="table-wrap">
+        <table>
+          <caption>Comparing the two ways to serve a page</caption>
+          <thead>
+            <tr><th scope="col">Feature</th><th scope="col">Static</th><th scope="col">Dynamic</th></tr>
+          </thead>
+          <tbody>
+            <tr><th scope="row">Content</th><td>Same pre-built files for every visitor</td><td>Pages built for each visitor from a database</td></tr>
+            <tr><th scope="row">Setup</th><td>Fast and simple, no database needed</td><td>Needs application code and a database</td></tr>
+            <tr><th scope="row">Can do</th><td>Show information</td><td>Logins, shopping carts, personalization</td></tr>
+            <tr><th scope="row">Good for</th><td>Portfolios, personal and small business sites</td><td>YouTube, Instagram, Amazon</td></tr>
+            <tr><th scope="row">Analogy</th><td>A printed flyer</td><td>A chef cooking a custom meal</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>This website is itself static: GitHub Pages sends the same HTML and CSS files to everyone.</p>
+    </section>
+
+    <section>
+      <h2>How a Web Server Works, Step by Step</h2>
+      <p>All of this happens automatically, usually in less than a second.</p>
+      <figure>
+        <img src="images/request-flow.svg" alt="Diagram: the browser asks DNS where the site is, sends GET /index.html to the web server, and receives 200 OK with the page files" width="760" height="240">
+        <figcaption>Figure 1. The path of a single page request.</figcaption>
+      </figure>
+      <ol>
+        <li><strong>You type a web address</strong> such as <code>www.google.com</code> into your browser.</li>
+        <li><strong>DNS finds the server.</strong> DNS, the internet&rsquo;s phone book, turns the name into the server&rsquo;s numeric IP address.</li>
+        <li><strong>The browser sends a request</strong> asking for the page. This message is called an HTTP request.</li>
+        <li><strong>The server responds</strong> with the files and a <code>200 OK</code> status, or <code>404 Not Found</code> if the page doesn&rsquo;t exist.</li>
+        <li><strong>The browser builds the page</strong> from the text, images, colors and layout it received.</li>
+      </ol>
+    </section>
+
+    <section>
+      <h2>How Servers and Browsers Talk: HTTP</h2>
+      <p>HTTP (HyperText Transfer Protocol) is the rulebook browsers and servers both follow. Its messages are plain text, and the server doesn&rsquo;t remember you between requests, which is why websites use cookies.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Common HTTP request types</caption>
+          <thead>
+            <tr><th scope="col">Method</th><th scope="col">Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>GET</code></td><td>Give me this page</td></tr>
+            <tr><td><code>POST</code></td><td>Here is some information (for example, a form)</td></tr>
+            <tr><td><code>PUT</code></td><td>Update this existing item</td></tr>
+            <tr><td><code>DELETE</code></td><td>Remove this item</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <ul>
+        <li><strong>HTTPS</strong> adds encryption, like putting your message in a locked box only the server can open.</li>
+        <li><strong>HTTP/2</strong> lets the browser ask for many files at once over one connection.</li>
+        <li><strong>HTTP/3</strong> works better on phones and unreliable connections.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>Why Use a Dedicated Web Server?</h2>
+      <p>A website could technically run on a laptop, but a dedicated server in a data center is:</p>
+      <ul>
+        <li><strong>Always on</strong>, running 24/7/365 with almost no downtime.</li>
+        <li><strong>Always connected</strong> through fast, reliable data-center networks.</li>
+        <li><strong>At a permanent address</strong>, unlike home internet addresses that change.</li>
+        <li><strong>Professionally maintained</strong> by a team that fixes problems quickly.</li>
+        <li><strong>Built for traffic spikes</strong> that would crash a normal computer.</li>
+        <li><strong>Safe and backed up</strong> with backup power, cameras and fire suppression.</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>The Parts That Make Up a Web Server</h2>
+      <div class="card-grid">
+        <div class="card"><h3>Core server software</h3><p>The main program, like Apache or Nginx, that receives requests and sends back pages.</p></div>
+        <div class="card"><h3>File storage</h3><p>HTML, CSS, JavaScript, images and video stored on disk.</p></div>
+        <div class="card"><h3>Application layer</h3><p>Extra software for logins, accounts and anything more complex than a static page.</p></div>
+        <div class="card"><h3>Database</h3><p>Stores usernames, passwords and other data the site needs.</p></div>
+        <div class="card"><h3>Load balancer</h3><p>Splits visitors across several servers so none gets overwhelmed.</p></div>
+        <div class="card"><h3>Memory cache</h3><p>Keeps popular pages in fast memory to send them instantly.</p></div>
+        <div class="card"><h3>Encryption handler</h3><p>Handles HTTPS so nobody can read passwords in transit.</p></div>
+        <div class="card"><h3>Access logs</h3><p>A record of every request: who asked for what and whether it worked.</p></div>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer with the class project note (same on every page) ===== -->
+  <footer id="site-footer">
+    <p>This website is a class project for IT 3203 at Kennesaw State University.</p>
+    <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+    <p>&copy; 2026 Rico Burley</p>
+  </footer>
+
+</body>
+</html>

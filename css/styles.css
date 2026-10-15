@@ -1,0 +1,450 @@
+/* ==========================================================================
+   styles.css  -  the ONE stylesheet shared by every page of the site
+   Project: Web Servers (IT 3203 Milestone 1)  |  Author: Rico Burley
+
+   Selector types demonstrated in this file (requirement 3a):
+     1. Element (type) selectors ..... body, h1, table, a
+     2. Class selectors .............. .card, .split, .request-line
+     3. ID selectors ................. #site-header, #main-nav, #site-footer
+     4. Descendant / child selectors . #main-nav a, .card h3
+     5. Pseudo-class selectors ....... a:hover, tr:nth-child(even)
+
+   Layout (requirement 3b): Flexbox for the header and menu,
+   CSS Grid for the card layouts and two-column comparisons.
+   ========================================================================== */
+
+
+/* ---------- 1. Color and font variables ----------
+   Defined once on :root so every rule below can reuse them.
+   The colors borrow from server "status lights": teal for links,
+   green for success (200 OK) and orange for errors (404). */
+:root {
+  --ink: #16233a;          /* main text color (dark navy) */
+  --ink-soft: #4a5a72;     /* secondary text */
+  --paper: #f3f5f8;        /* page background (cool light grey) */
+  --panel: #ffffff;        /* background of cards and tables */
+  --line: #c9d3df;         /* border color */
+  --accent: #0e7c86;       /* links and highlights (teal) */
+  --accent-dark: #095a61;  /* link hover color */
+  --ok: #2f8f4e;           /* "200 OK" green */
+  --warn: #c2410c;         /* "404 / attack" orange */
+
+  --font-body: "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
+  --font-code: "IBM Plex Mono", Consolas, "Courier New", monospace;
+}
+
+
+/* ---------- 2. Element (type) selectors: base page styles ---------- */
+
+/* Box-sizing makes padding part of an element's width, so layouts don't overflow */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: var(--paper);
+  color: var(--ink);
+  font-family: var(--font-body);   /* font settings requirement */
+  font-size: 1.05rem;
+  line-height: 1.6;
+}
+
+h1,
+h2,
+h3 {
+  line-height: 1.25;
+  margin: 1.6em 0 0.5em;
+}
+
+h1 {
+  font-size: 2.3rem;
+  font-weight: 700;
+  margin-top: 0.4em;
+}
+
+h2 {
+  font-size: 1.6rem;
+  font-weight: 600;
+  /* A thin rule under each section heading separates topics */
+  padding-bottom: 0.3em;
+  border-bottom: 2px solid var(--line);
+}
+
+h3 {
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+p,
+ul,
+ol {
+  max-width: 72ch;   /* keeps lines a comfortable reading length */
+}
+
+li {
+  margin-bottom: 0.35em;
+}
+
+img {
+  max-width: 100%;   /* images shrink on small screens */
+  height: auto;
+}
+
+code {
+  font-family: var(--font-code);
+  font-size: 0.92em;
+  background-color: #e6ebf1;
+  padding: 0.1em 0.35em;
+  border-radius: 3px;
+}
+
+/* Links: color plus a hover effect (requirement 3c) */
+a {
+  color: var(--accent);
+  text-decoration-thickness: 1px;
+  text-underline-offset: 3px;
+}
+
+a:hover,
+a:focus {
+  color: var(--accent-dark);
+  text-decoration-thickness: 2px;
+}
+
+/* Visible outline for keyboard users */
+a:focus-visible {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
+
+/* ---------- 3. ID selectors: header, menu, main, footer ---------- */
+
+#site-header {
+  background-color: var(--ink);
+  color: #ffffff;
+  padding: 1rem 1.5rem;
+  /* Flexbox puts the site title on the left and the menu on the right,
+     and wraps the menu under the title on narrow screens */
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: space-between;
+  gap: 0.75rem 2rem;
+}
+
+#site-header .site-title {
+  color: #ffffff;
+  font-size: 1.5rem;
+  font-weight: 700;
+  text-decoration: none;
+}
+
+/* The "request line" under the title shows which page the
+   browser asked the server for, e.g.  GET /history.html  200 OK */
+.request-line {
+  margin: 0.15rem 0 0;
+  font-family: var(--font-code);
+  font-size: 0.85rem;
+  color: #b9c6d8;
+}
+
+.request-line .method {
+  color: #8fd3da;
+  font-weight: 600;
+}
+
+.request-line .status {
+  color: #9be0ae;
+  margin-left: 0.5em;
+}
+
+/* Main menu: a list laid out in a row with flexbox */
+#main-nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.25rem;
+}
+
+/* Descendant selector: only links inside the main menu */
+#main-nav a {
+  display: block;
+  padding: 0.4rem 0.75rem;
+  color: #dfe7f1;
+  text-decoration: none;
+  border: 1px solid transparent;
+  border-radius: 4px;
+}
+
+/* Menu hover effect: light border and background appear */
+#main-nav a:hover,
+#main-nav a:focus {
+  background-color: rgba(255, 255, 255, 0.1);
+  border-color: #8fd3da;
+  color: #ffffff;
+}
+
+/* The page you are currently on is marked in the menu */
+#main-nav a.current {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+#content {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 1.5rem 1.5rem 3rem;
+}
+
+#site-footer {
+  border-top: 4px solid var(--accent);
+  background-color: var(--ink);
+  color: #c9d3df;
+  padding: 1.5rem;
+  text-align: center;
+  font-size: 0.95rem;
+}
+
+#site-footer p {
+  margin: 0.3rem auto;
+}
+
+#site-footer a {
+  color: #8fd3da;
+}
+
+#site-footer a:hover {
+  color: #ffffff;
+}
+
+
+/* ---------- 4. Class selectors: reusable components ---------- */
+
+/* Short intro paragraph at the top of each page */
+.lead {
+  font-size: 1.2rem;
+  color: var(--ink-soft);
+}
+
+/* Homepage hero: text on the left, illustration on the right (CSS Grid) */
+.hero {
+  display: grid;
+  grid-template-columns: 3fr 2fr;
+  gap: 2rem;
+  align-items: center;
+}
+
+.byline {
+  color: var(--ink-soft);
+  margin-top: 0;
+}
+
+/* Card grid: as many columns as fit, each at least 240px wide */
+.card-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 1rem;
+  margin: 1rem 0 1.5rem;
+  padding: 0;
+  list-style: none;
+  max-width: none;   /* overrides the 72ch limit set on ul/ol above */
+}
+
+.card {
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-radius: 6px;
+  padding: 1rem 1.25rem;
+}
+
+/* Child selectors: tighten the spacing of headings inside cards */
+.card h3 {
+  margin-top: 0;
+}
+
+.card p:last-child {
+  margin-bottom: 0;
+}
+
+/* Cards that describe attacks get an orange top border */
+.card.threat {
+  border-top: 4px solid var(--warn);
+}
+
+/* Cards that describe defenses get a green top border */
+.card.defense {
+  border-top: 4px solid var(--ok);
+}
+
+/* Two equal columns, used for "Hardware vs. Software" style comparisons */
+.split {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 1rem;
+}
+
+/* Key terms on the homepage shown as small tags in a wrapping row */
+.term-list {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+  list-style: none;
+  padding: 0;
+  max-width: none;
+}
+
+.term-list li {
+  margin: 0;
+}
+
+.term-list a {
+  display: inline-block;
+  padding: 0.3rem 0.7rem;
+  border: 1px solid var(--accent);
+  border-radius: 999px;
+  text-decoration: none;
+  background-color: var(--panel);
+}
+
+.term-list a:hover {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+/* An analogy or side note set off from the main text */
+.note {
+  border-left: 4px solid var(--accent);
+  background-color: #e3f1f2;
+  padding: 0.75rem 1rem;
+  margin: 1rem 0;
+  max-width: 72ch;
+}
+
+/* Timeline (History page): years down a vertical line */
+.timeline {
+  list-style: none;
+  padding-left: 0;
+  border-left: 3px solid var(--line);
+  margin-left: 0.5rem;
+}
+
+.timeline li {
+  position: relative;
+  padding: 0 0 1rem 1.5rem;
+}
+
+/* Small dot on the line next to each event */
+.timeline li::before {
+  content: "";
+  position: absolute;
+  left: -0.5rem;
+  top: 0.45rem;
+  width: 0.8rem;
+  height: 0.8rem;
+  border-radius: 50%;
+  background-color: var(--accent);
+}
+
+.timeline .year {
+  font-family: var(--font-code);
+  font-weight: 600;
+  color: var(--accent-dark);
+}
+
+/* Figures with a caption under the image */
+figure {
+  margin: 1.5rem 0;
+}
+
+figcaption {
+  font-size: 0.9rem;
+  color: var(--ink-soft);
+  margin-top: 0.4rem;
+}
+
+/* Profile photo placeholder / image on the About page */
+.profile {
+  display: grid;
+  grid-template-columns: 180px 1fr;
+  gap: 1.5rem;
+  align-items: start;
+}
+
+.profile img {
+  border: 3px solid var(--accent);
+  border-radius: 50%;
+}
+
+
+/* ---------- 5. Tables ---------- */
+
+/* Wrapper lets wide tables scroll sideways on phones */
+.table-wrap {
+  overflow-x: auto;
+  margin: 1rem 0 1.5rem;
+}
+
+table {
+  border-collapse: collapse;
+  min-width: 100%;
+  background-color: var(--panel);
+}
+
+caption {
+  text-align: left;
+  font-weight: 600;
+  padding-bottom: 0.5rem;
+}
+
+th,
+td {
+  border: 1px solid var(--line);
+  padding: 0.55rem 0.8rem;
+  text-align: left;
+  vertical-align: top;
+}
+
+th {
+  background-color: #e6ebf1;
+}
+
+/* Pseudo-class selector: stripe every other row for readability */
+tbody tr:nth-child(even) {
+  background-color: #f7f9fb;
+}
+
+/* Status code colors */
+.code-ok {
+  color: var(--ok);
+  font-weight: 600;
+}
+
+.code-bad {
+  color: var(--warn);
+  font-weight: 600;
+}
+
+
+/* ---------- 6. Small screens ----------
+   Under 700px wide, two-column layouts become one column. */
+@media (max-width: 700px) {
+  h1 {
+    font-size: 1.8rem;
+  }
+
+  .hero,
+  .split,
+  .profile {
+    grid-template-columns: 1fr;
+  }
+
+  .profile img {
+    width: 140px;
+  }
+}

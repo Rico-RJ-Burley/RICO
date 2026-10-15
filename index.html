@@ -1,1 +1,121 @@
-<!DOCTYPE html> <html> <head><title>My Website</title></head> <body><h1>Hello, world!</h1></body> </html>
+<!DOCTYPE html>
+<!--
+  index.html - Home
+  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  The header, main menu and footer are the same on every page.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="A student research site about web servers: what they are, how they work, their history, and how they are secured.">
+  <title>Home | Web Servers</title>
+  <!-- IBM Plex font from Google Fonts (falls back to system fonts if it can't load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <!-- The one and only stylesheet for the whole site -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== Site header: title + main menu (same on every page) ===== -->
+  <header id="site-header">
+    <div class="brand">
+      <a class="site-title" href="index.html">Web Servers</a>
+      <!-- Shows the HTTP request a browser would send for this page -->
+      <p class="request-line"><span class="method">GET</span> /index.html <span class="status">200 OK</span></p>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html" class="current" aria-current="page">Home</a></li>
+        <li><a href="basics.html">Basics</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="software.html">Server Software</a></li>
+        <li><a href="security.html">Security &amp; Speed</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main content for this page ===== -->
+  <main id="content">
+
+    <!-- Cover: title, author and illustration side by side (CSS grid .hero) -->
+    <section class="hero">
+      <div>
+        <h1>Web Servers: How Websites Reach Your Screen</h1>
+        <p class="byline">A research project by Rico Burley &middot; IT 3203, Kennesaw State University</p>
+        <p class="lead">Every time a website opens, a web server is working behind the scenes to deliver it. This site explains what web servers are, how they work, where they came from, and how they are kept fast and secure.</p>
+      </div>
+      <img src="images/server-rack.svg" alt="Illustration of a server rack with green, yellow and orange status lights" width="320" height="300">
+    </section>
+
+    <!-- Abstract -->
+    <section>
+      <h2>Abstract</h2>
+      <p>Web servers are one of the most important parts of the internet. A web server stores the files that make up a website and sends them to any browser that asks for them, using a set of rules called HTTP. Web servers can be physical computers in a data center or virtual machines rented from a cloud provider, and together they handle billions of requests every day.</p>
+      <p>This project covers the basics of how web servers work, their history from the first server at CERN in 1990 to today&rsquo;s cloud and edge networks, the most popular server software (Nginx and Apache), and the security and performance techniques IT teams use to keep servers running. Because web servers are always connected to the internet, they are a constant target for attackers, which makes them an important topic for anyone studying cybersecurity.</p>
+    </section>
+
+    <!-- Key terms: each links to its explanation on the Key Concepts page -->
+    <section>
+      <h2>Key Terms</h2>
+      <ul class="term-list">
+        <li><a href="concepts.html#client-server">Client-server model</a></li>
+        <li><a href="concepts.html#http">HTTP / HTTPS</a></li>
+        <li><a href="concepts.html#dns">DNS</a></li>
+        <li><a href="concepts.html#status-codes">Status codes</a></li>
+        <li><a href="concepts.html#static-dynamic">Static vs. dynamic</a></li>
+        <li><a href="concepts.html#reverse-proxy">Reverse proxy</a></li>
+        <li><a href="concepts.html#scaling">Load balancing &amp; caching</a></li>
+      </ul>
+    </section>
+
+    <!-- Table of contents: a card for each page (CSS grid .card-grid) -->
+    <section>
+      <h2>Table of Contents</h2>
+      <ol class="card-grid">
+        <li class="card">
+          <h3><a href="basics.html">Web Server Basics</a></h3>
+          <p>What a web server is, hardware vs. software, static vs. dynamic, and how a page request works step by step.</p>
+        </li>
+        <li class="card">
+          <h3><a href="history.html">History of Web Servers</a></h3>
+          <p>From Tim Berners-Lee&rsquo;s first server at CERN to the cloud and edge computing.</p>
+        </li>
+        <li class="card">
+          <h3><a href="software.html">Web Server Software</a></h3>
+          <p>Nginx, Apache, IIS and others, plus who uses what in 2025.</p>
+        </li>
+        <li class="card">
+          <h3><a href="security.html">Security &amp; Speed</a></h3>
+          <p>How web servers get attacked, how they are protected, and how they are made faster.</p>
+        </li>
+        <li class="card">
+          <h3><a href="concepts.html">Key Concepts</a></h3>
+          <p>Seven core ideas you need to understand web servers.</p>
+        </li>
+        <li class="card">
+          <h3><a href="references.html">References &amp; Resources</a></h3>
+          <p>Sources used for this project and good places to keep learning.</p>
+        </li>
+        <li class="card">
+          <h3><a href="about.html">About</a></h3>
+          <p>About me and about this project.</p>
+        </li>
+      </ol>
+    </section>
+  </main>
+
+  <!-- ===== Footer with the class project note (same on every page) ===== -->
+  <footer id="site-footer">
+    <p>This website is a class project for IT 3203 at Kennesaw State University.</p>
+    <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+    <p>&copy; 2026 Rico Burley</p>
+  </footer>
+
+</body>
+</html>

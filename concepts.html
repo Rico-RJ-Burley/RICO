@@ -1,0 +1,110 @@
+<!DOCTYPE html>
+<!--
+  concepts.html - Key Concepts
+  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  The header, main menu and footer are the same on every page.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Seven key concepts for understanding web servers.">
+  <title>Key Concepts | Web Servers</title>
+  <!-- IBM Plex font from Google Fonts (falls back to system fonts if it can't load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <!-- The one and only stylesheet for the whole site -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== Site header: title + main menu (same on every page) ===== -->
+  <header id="site-header">
+    <div class="brand">
+      <a class="site-title" href="index.html">Web Servers</a>
+      <!-- Shows the HTTP request a browser would send for this page -->
+      <p class="request-line"><span class="method">GET</span> /concepts.html <span class="status">200 OK</span></p>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="basics.html">Basics</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="software.html">Server Software</a></li>
+        <li><a href="security.html">Security &amp; Speed</a></li>
+        <li><a href="concepts.html" class="current" aria-current="page">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main content for this page ===== -->
+  <main id="content">
+
+    <h1>Key Concepts</h1>
+    <p class="lead">Seven ideas that explain how web servers do their job.</p>
+
+    <!-- Each concept has an id so the homepage key terms can link straight to it -->
+    <section id="client-server">
+      <h2>1. The Client-Server Model</h2>
+      <p>The web is built on two roles. The <strong>client</strong> (your browser) asks for something, and the <strong>server</strong> answers. The server waits for requests and can answer thousands of clients at once. The client never talks to the server&rsquo;s files directly; it only gets what the server chooses to send.</p>
+    </section>
+
+    <section id="http">
+      <h2>2. HTTP and HTTPS</h2>
+      <p>HTTP is the set of rules for how requests and responses are written. Each request has a method (like <code>GET</code> or <code>POST</code>), a path (like <code>/about.html</code>), and headers with extra details. HTTPS is HTTP sent through an encrypted TLS connection, so nobody in between can read or change it. HTTP uses port 80 and HTTPS uses port 443.</p>
+    </section>
+
+    <section id="dns">
+      <h2>3. DNS (Domain Name System)</h2>
+      <p>Computers find each other with numeric IP addresses, but people remember names. DNS is the internet&rsquo;s phone book: it turns a name like <code>github.io</code> into the IP address of the server that hosts it. Without DNS, you would have to type numbers to visit any website.</p>
+    </section>
+
+    <section id="status-codes">
+      <h2>4. HTTP Status Codes</h2>
+      <p>Every response starts with a three-digit code that tells the browser how the request went.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Common status codes</caption>
+          <thead>
+            <tr><th scope="col">Code</th><th scope="col">Meaning</th></tr>
+          </thead>
+          <tbody>
+            <tr><td class="code-ok">200</td><td>OK: everything worked</td></tr>
+            <tr><td>301</td><td>Moved permanently to a new address</td></tr>
+            <tr><td class="code-bad">403</td><td>Forbidden: you are not allowed to see this</td></tr>
+            <tr><td class="code-bad">404</td><td>Not found: the page doesn&rsquo;t exist</td></tr>
+            <tr><td class="code-bad">500</td><td>Internal server error</td></tr>
+            <tr><td class="code-bad">503</td><td>Service unavailable: the server is too busy or down</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section id="static-dynamic">
+      <h2>5. Static vs. Dynamic Content</h2>
+      <p>Static content is a file sent exactly as it is stored, so every visitor sees the same thing. Dynamic content is built by code each time someone asks, often using a database, so the page can change for each user, such as a shopping cart or a social media feed. Many sites mix both: the web server sends static files itself and hands dynamic requests to an application server.</p>
+    </section>
+
+    <section id="reverse-proxy">
+      <h2>6. Reverse Proxy</h2>
+      <p>A reverse proxy is a server that sits in front of other servers and receives every request first. It then passes each request to the right server behind it. This hides the inner servers from the internet, lets one place handle HTTPS, and makes it easy to add caching or security rules. Nginx is often used this way.</p>
+    </section>
+
+    <section id="scaling">
+      <h2>7. Load Balancing and Caching</h2>
+      <p>These are the two main ways to handle lots of visitors. <strong>Load balancing</strong> spreads requests across several servers so no single one gets overwhelmed, and keeps the site up if one server fails. <strong>Caching</strong> saves copies of popular responses in fast memory or on a CDN so they can be sent again without redoing the work.</p>
+    </section>
+  </main>
+
+  <!-- ===== Footer with the class project note (same on every page) ===== -->
+  <footer id="site-footer">
+    <p>This website is a class project for IT 3203 at Kennesaw State University.</p>
+    <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+    <p>&copy; 2026 Rico Burley</p>
+  </footer>
+
+</body>
+</html>

@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<!--
+  security.html - Security &amp; Speed
+  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  The header, main menu and footer are the same on every page.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="How web servers are attacked, how they are protected, and how they are made faster.">
+  <title>Security &amp; Speed | Web Servers</title>
+  <!-- IBM Plex font from Google Fonts (falls back to system fonts if it can't load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <!-- The one and only stylesheet for the whole site -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== Site header: title + main menu (same on every page) ===== -->
+  <header id="site-header">
+    <div class="brand">
+      <a class="site-title" href="index.html">Web Servers</a>
+      <!-- Shows the HTTP request a browser would send for this page -->
+      <p class="request-line"><span class="method">GET</span> /security.html <span class="status">200 OK</span></p>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="basics.html">Basics</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="software.html">Server Software</a></li>
+        <li><a href="security.html" class="current" aria-current="page">Security &amp; Speed</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main content for this page ===== -->
+  <main id="content">
+
+    <h1>Security &amp; Speed</h1>
+    <p class="lead">Web servers are always connected to the internet, so they are constant targets. Keeping them safe and fast is an ongoing job.</p>
+
+    <section>
+      <h2>How Web Servers Get Attacked</h2>
+      <!-- .card.threat adds an orange top border to each attack -->
+      <div class="card-grid">
+        <div class="card threat"><h3>DDoS (flooding)</h3><p>Thousands of fake requests hit the server at once, like a mob at a restaurant door, so real visitors can&rsquo;t get in.</p></div>
+        <div class="card threat"><h3>SQL injection</h3><p>Attackers type database commands into forms, like a login box, to read or change private data.</p></div>
+        <div class="card threat"><h3>Cross-site scripting (XSS)</h3><p>Harmful code is hidden in a page and runs in other visitors&rsquo; browsers, stealing logins or redirecting them.</p></div>
+        <div class="card threat"><h3>Directory traversal</h3><p>A crafted file path such as <code>../../etc/passwd</code> tricks the server into showing files that should stay private.</p></div>
+        <div class="card threat"><h3>Outdated software</h3><p>Unpatched servers have known security holes, one of the most common ways sites get hacked.</p></div>
+        <div class="card threat"><h3>Unencrypted traffic</h3><p>Without HTTPS, anyone in between can read the data, like a postcard instead of a sealed letter.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How to Keep Web Servers Safe</h2>
+      <!-- .card.defense adds a green top border to each defense -->
+      <div class="card-grid">
+        <div class="card defense"><h3>Keep software updated</h3><p>Regular updates close known holes.</p></div>
+        <div class="card defense"><h3>Use HTTPS everywhere</h3><p>Free certificates (like Let&rsquo;s Encrypt) mean there&rsquo;s no excuse for plain HTTP.</p></div>
+        <div class="card defense"><h3>Add security headers</h3><p>Tell browsers what content may run, blocking many attacks automatically.</p></div>
+        <div class="card defense"><h3>Turn off what you don&rsquo;t need</h3><p>Every extra feature is a possible way in.</p></div>
+        <div class="card defense"><h3>Use a web application firewall</h3><p>Blocks requests that look like attacks before they reach the site.</p></div>
+        <div class="card defense"><h3>Watch the logs</h3><p>Spot unusual patterns, such as many failed logins.</p></div>
+        <div class="card defense"><h3>Rate limiting</h3><p>Automatically slow down anyone sending too many requests too quickly.</p></div>
+        <div class="card defense"><h3>Penetration testing</h3><p>Security pros attack their own servers to find flaws first.</p></div>
+      </div>
+    </section>
+
+    <section>
+      <h2>How to Make Web Servers Faster</h2>
+      <p>Speed matters: many mobile users leave a site that takes more than about three seconds to load.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Common speed techniques</caption>
+          <thead>
+            <tr><th scope="col">Technique</th><th scope="col">What it does</th></tr>
+          </thead>
+          <tbody>
+            <tr><td>Content delivery network (CDN)</td><td>Keeps copies of the site around the world and serves you from the nearest one</td></tr>
+            <tr><td>Compression (gzip, Brotli)</td><td>Shrinks text files before sending them, often by 60&ndash;80%</td></tr>
+            <tr><td>Caching</td><td>Stores popular pages in fast memory instead of rebuilding them</td></tr>
+            <tr><td>HTTP/2 and HTTP/3</td><td>Send many files at once over a single connection</td></tr>
+            <tr><td>Load balancing</td><td>Sends visitors to another server when one gets busy</td></tr>
+            <tr><td>Image and code optimization</td><td>Uses smaller image formats and removes unneeded CSS/JavaScript</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <!-- ===== Footer with the class project note (same on every page) ===== -->
+  <footer id="site-footer">
+    <p>This website is a class project for IT 3203 at Kennesaw State University.</p>
+    <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+    <p>&copy; 2026 Rico Burley</p>
+  </footer>
+
+</body>
+</html>

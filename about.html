@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<!--
+  about.html - About
+  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  The header, main menu and footer are the same on every page.
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="About Rico Burley and the web servers project.">
+  <title>About | Web Servers</title>
+  <!-- IBM Plex font from Google Fonts (falls back to system fonts if it can't load) -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <!-- The one and only stylesheet for the whole site -->
+  <link rel="stylesheet" href="css/styles.css">
+</head>
+<body>
+
+  <!-- ===== Site header: title + main menu (same on every page) ===== -->
+  <header id="site-header">
+    <div class="brand">
+      <a class="site-title" href="index.html">Web Servers</a>
+      <!-- Shows the HTTP request a browser would send for this page -->
+      <p class="request-line"><span class="method">GET</span> /about.html <span class="status">200 OK</span></p>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="basics.html">Basics</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="software.html">Server Software</a></li>
+        <li><a href="security.html">Security &amp; Speed</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="about.html" class="current" aria-current="page">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <!-- ===== Main content for this page ===== -->
+  <main id="content">
+
+    <h1>About</h1>
+
+    <!-- About me: photo on the left, text on the right (CSS grid .profile) -->
+    <section class="profile">
+      <!-- Placeholder image: replace images/profile.svg with your own photo if you like -->
+      <img src="images/profile.svg" alt="Profile placeholder with the initials RB" width="180" height="180">
+      <div>
+        <h2>About Me</h2>
+        <p>My name is Rico Burley and I am from Crawfordville, Georgia. I am an IT major with a concentration in Cyber Operations Security. I am taking this class to hopefully understand database systems and fulfill a credit.</p>
+        <p>I plan to play video games professionally and stream that for content. I plan to use my IT degree to fix any computer issues that may arise, as well as to implement new technology into my setup or everyday life whenever it arrives.</p>
+        <p>My hobbies outside of school are playing video games, watching TV, and reading books. I am also a collegiate Apex Legends player for Kennesaw State University.</p>
+      </div>
+    </section>
+
+    <section>
+      <h2>Mini Resume</h2>
+      <div class="table-wrap">
+        <table>
+          <caption>Rico Burley at a glance</caption>
+          <tbody>
+            <tr><th scope="row">Hometown</th><td>Crawfordville, Georgia</td></tr>
+            <tr><th scope="row">School</th><td>Kennesaw State University</td></tr>
+            <tr><th scope="row">Major</th><td>Information Technology</td></tr>
+            <tr><th scope="row">Concentration</th><td>Cyber Operations Security</td></tr>
+            <tr><th scope="row">Activities</th><td>Collegiate Apex Legends player, KSU Esports; content creator and streamer</td></tr>
+            <tr><th scope="row">Career goal</th><td>Professional gaming and streaming, backed by IT skills</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <h3>Skills I&rsquo;m building</h3>
+      <ul>
+        <li>Troubleshooting and fixing computer hardware and software issues</li>
+        <li>Setting up and maintaining a gaming and streaming setup</li>
+        <li>Cybersecurity fundamentals</li>
+        <li>HTML, CSS and publishing websites with GitHub Pages</li>
+      </ul>
+    </section>
+
+    <section>
+      <h2>About This Project</h2>
+      <p>This website is my research project for IT 3203 at Kennesaw State University. The topic is web servers: the computers and programs that deliver every website on the internet. I chose this topic because it connects my cybersecurity concentration to something I use every day, from loading a game&rsquo;s website to streaming online.</p>
+      <p>The site is built with plain HTML and one CSS file, and it is hosted on GitHub Pages, which is itself a static web server. More research and content will be added in the next two milestones.</p>
+    </section>
+  </main>
+
+  <!-- ===== Footer with the class project note (same on every page) ===== -->
+  <footer id="site-footer">
+    <p>This website is a class project for IT 3203 at Kennesaw State University.</p>
+    <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+    <p>&copy; 2026 Rico Burley</p>
+  </footer>
+
+</body>
+</html>
