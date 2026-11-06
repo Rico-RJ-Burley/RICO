@@ -1,6 +1,6 @@
 /* ==========================================================================
    styles.css  -  the ONE stylesheet shared by every page of the site
-   Project: Web Servers (IT 3203 Milestone 1)  |  Author: Rico Burley
+   Project: Web Servers (IT 3203 Milestones 1-2)  |  Author: Rico Burley
 
    Selector types demonstrated in this file (requirement 3a):
      1. Element (type) selectors ..... body, h1, table, a
@@ -11,6 +11,10 @@
 
    Layout (requirement 3b): Flexbox for the header and menu,
    CSS Grid for the card layouts and two-column comparisons.
+
+   Milestone 2 additions: shared helpers (section 7), form and quiz
+   controls (section 8), and quiz results (section 9). The small-screen
+   rules are kept together at the very end of the file.
    ========================================================================== */
 
 
@@ -28,6 +32,10 @@
   --accent-dark: #095a61;  /* link hover color */
   --ok: #2f8f4e;           /* "200 OK" green */
   --warn: #c2410c;         /* "404 / attack" orange */
+  --ok-soft: #e6f4ea;      /* light green background for correct answers */
+  --warn-soft: #fdeee6;    /* light orange background for wrong answers */
+  --code-bg: #e6ebf1;      /* background for code, table headers */
+  --radius: 6px;           /* one corner radius for panels and controls */
 
   --font-body: "IBM Plex Sans", "Segoe UI", Roboto, Arial, sans-serif;
   --font-code: "IBM Plex Mono", Consolas, "Courier New", monospace;
@@ -96,7 +104,7 @@ img {
 code {
   font-family: var(--font-code);
   font-size: 0.92em;
-  background-color: #e6ebf1;
+  background-color: var(--code-bg);
   padding: 0.1em 0.35em;
   border-radius: 3px;
 }
@@ -114,8 +122,12 @@ a:focus {
   text-decoration-thickness: 2px;
 }
 
-/* Visible outline for keyboard users */
-a:focus-visible {
+/* Visible outline for keyboard users (links, buttons and form controls) */
+a:focus-visible,
+button:focus-visible,
+input:focus-visible,
+select:focus-visible,
+[tabindex="-1"]:focus-visible {
   outline: 2px solid var(--accent);
   outline-offset: 2px;
 }
@@ -411,7 +423,7 @@ td {
 }
 
 th {
-  background-color: #e6ebf1;
+  background-color: var(--code-bg);
 }
 
 /* Pseudo-class selector: stripe every other row for readability */
@@ -431,7 +443,416 @@ tbody tr:nth-child(even) {
 }
 
 
-/* ---------- 6. Small screens ----------
+/* ---------- 6. Code samples ----------
+   A raw HTTP request and response on the Basics page */
+pre {
+  background-color: var(--ink);
+  color: #dfe7f1;
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+  line-height: 1.5;
+  padding: 1rem 1.25rem;
+  border-radius: var(--radius);
+  overflow-x: auto;          /* long lines scroll instead of breaking the layout */
+  max-width: 72ch;
+}
+
+pre code {
+  background: none;          /* undo the inline-code background inside <pre> */
+  padding: 0;
+  color: inherit;
+}
+
+.split pre {
+  max-width: none;
+  margin: 0;
+}
+
+
+/* ---------- 7. Shared helpers (Milestone 2) ---------- */
+
+/* Hidden on screen but still read by screen readers */
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  overflow: hidden;
+  clip: rect(0 0 0 0);
+  white-space: nowrap;
+}
+
+/* "Skip to main content" link: off screen until a keyboard user tabs to it */
+.skip-link {
+  position: absolute;
+  left: 1rem;
+  top: -3rem;
+  z-index: 10;
+  background-color: var(--panel);
+  color: var(--ink);
+  padding: 0.5rem 0.9rem;
+  border-radius: var(--radius);
+}
+
+.skip-link:focus {
+  top: 1rem;
+}
+
+
+/* ---------- 8. Forms and the quiz (Milestone 2) ---------- */
+
+/* Buttons: one base style plus primary (filled) and secondary (outlined) */
+.btn {
+  font: inherit;
+  font-weight: 600;
+  padding: 0.6rem 1.2rem;
+  border-radius: var(--radius);
+  border: 2px solid var(--accent);
+  cursor: pointer;
+}
+
+.btn-primary {
+  background-color: var(--accent);
+  color: #ffffff;
+}
+
+.btn-primary:hover {
+  background-color: var(--accent-dark);
+  border-color: var(--accent-dark);
+}
+
+.btn-secondary {
+  background-color: var(--panel);
+  color: var(--accent-dark);
+}
+
+.btn-secondary:hover {
+  background-color: #e3f1f2;
+}
+
+.btn:disabled {
+  opacity: 0.45;
+  cursor: not-allowed;
+}
+
+/* Timer bar: sticks to the top of the window while the user scrolls
+   through the questions, styled like the dark site header */
+.quiz-bar {
+  position: sticky;
+  top: 0;
+  z-index: 5;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  gap: 0.5rem 1.5rem;
+  background-color: var(--ink);
+  color: #dfe7f1;
+  padding: 0.6rem 1rem;
+  border-radius: var(--radius);
+  margin: 1.5rem 0 1rem;
+}
+
+.timer {
+  margin: 0;
+  font-family: var(--font-code);
+  font-size: 1.6rem;
+  font-weight: 600;
+  color: #9be0ae;                  /* same green as "200 OK" in the header */
+  font-variant-numeric: tabular-nums;   /* digits don't jump as they change */
+}
+
+/* Last minute: the timer turns orange */
+.timer.timer-low {
+  color: #fdba8c;
+}
+
+.quiz-progress {
+  margin: 0;
+  flex: 1;
+  color: #b9c6d8;
+}
+
+/* The outer fieldset just groups the questions; remove its default border */
+.quiz-questions {
+  border: 0;
+  margin: 0;
+  padding: 0;
+  min-width: 0;
+}
+
+/* Before Start is pressed, the questions are visible but faded */
+.quiz-questions:disabled .question {
+  opacity: 0.55;
+}
+
+/* One question card */
+.question {
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-left: 4px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1rem 1.25rem 0.5rem;
+  margin: 0 0 1rem;
+  min-width: 0;
+}
+
+.question legend {
+  float: left;             /* lets the legend sit inside the card like a heading */
+  width: 100%;
+  font-weight: 600;
+  font-size: 1.08rem;
+  margin-bottom: 0.6rem;
+}
+
+.question legend + * {
+  clear: left;
+}
+
+/* Question number in a small circle */
+.q-num {
+  display: inline-grid;
+  place-items: center;
+  width: 1.8rem;
+  height: 1.8rem;
+  margin-right: 0.5rem;
+  border-radius: 50%;
+  background-color: var(--ink);
+  color: #ffffff;
+  font-family: var(--font-code);
+  font-size: 0.9rem;
+}
+
+.q-hint {
+  font-weight: 400;
+  color: var(--ink-soft);
+}
+
+.q-text {
+  margin-top: 0;
+}
+
+/* Fill-in-the-blank box: looks like an underlined gap in the sentence */
+.blank {
+  font: inherit;
+  font-family: var(--font-code);
+  width: auto;
+  padding: 0.1rem 0.4rem;
+  margin: 0 0.2rem;
+  border: 0;
+  border-bottom: 2px solid var(--accent);
+  background-color: #eef6f7;
+  color: var(--ink);
+  text-align: center;
+}
+
+.blank:focus {
+  background-color: #dbeff1;
+}
+
+/* Drop-down list */
+.select {
+  font: inherit;
+  padding: 0.45rem 0.7rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background-color: var(--panel);
+  color: var(--ink);
+  min-width: 14rem;
+}
+
+/* Radio and checkbox options: the whole row is clickable */
+.choices {
+  display: grid;
+  gap: 0.4rem;
+  max-width: 60ch;
+}
+
+.choice {
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+  padding: 0.5rem 0.75rem;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  cursor: pointer;
+}
+
+.choice:hover {
+  border-color: var(--accent);
+  background-color: #f2f8f9;
+}
+
+/* :has() highlights the option the user picked (supported in all current browsers) */
+.choice:has(input:checked) {
+  border-color: var(--accent);
+  background-color: #e3f1f2;
+}
+
+/* Tints radios and checkboxes with the site's teal */
+.choice input {
+  accent-color: var(--accent);
+  width: 1.1rem;
+  height: 1.1rem;
+  margin: 0;
+}
+
+/* Feedback line under each question, filled in after grading */
+.q-feedback {
+  min-height: 1.4em;
+  margin: 0.6rem 0 0.4rem;
+  font-weight: 600;
+}
+
+/* After grading: green for correct, orange for wrong */
+.question.is-correct {
+  border-left-color: var(--ok);
+  background-color: var(--ok-soft);
+}
+
+.question.is-correct .q-feedback {
+  color: var(--ok);
+}
+
+.question.is-wrong {
+  border-left-color: var(--warn);
+  background-color: var(--warn-soft);
+}
+
+.question.is-wrong .q-feedback {
+  color: var(--warn);
+}
+
+/* The correct options are outlined in green...
+   (.question prefix gives these more weight than the :has() rule above) */
+.question .choice.is-answer {
+  border: 2px solid var(--ok);
+  background-color: #ffffff;
+}
+
+/* ...and a wrong option the user picked is crossed out in orange */
+.question .choice.is-wrong-pick {
+  border: 2px solid var(--warn);
+  background-color: #ffffff;
+  text-decoration: line-through;
+  text-decoration-color: var(--warn);
+}
+
+/* Graded questions are disabled, so keep them fully visible */
+.quiz-questions:disabled .question.is-correct,
+.quiz-questions:disabled .question.is-wrong {
+  opacity: 1;
+}
+
+.quiz-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem;
+  margin-top: 1.5rem;
+}
+
+.quiz-footnote {
+  color: var(--ink-soft);
+  font-size: 0.95rem;
+  margin-top: 1.5rem;
+}
+
+
+/* ---------- 9. Quiz results (Milestone 2) ---------- */
+
+.results {
+  background-color: var(--panel);
+  border: 1px solid var(--line);
+  border-top: 6px solid var(--line);
+  border-radius: var(--radius);
+  padding: 1.25rem 1.5rem 0.5rem;
+  margin: 1.5rem 0;
+  scroll-margin-top: 1rem;
+}
+
+/* Pass = green, fail = orange, used on the top border and the verdict */
+.results.is-pass {
+  border-top-color: var(--ok);
+}
+
+.results.is-fail {
+  border-top-color: var(--warn);
+}
+
+.results-verdict {
+  margin: 0;
+  font-size: 2rem;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.results.is-pass .results-verdict,
+.results.is-pass #result-score {
+  color: var(--ok);
+}
+
+.results.is-fail .results-verdict,
+.results.is-fail #result-score {
+  color: var(--warn);
+}
+
+/* Score, correct count and time in a row */
+.results-stats {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.75rem 2.5rem;
+  margin: 0.75rem 0;
+}
+
+.results-stats dt {
+  color: var(--ink-soft);
+  font-size: 0.9rem;
+}
+
+.results-stats dd {
+  margin: 0;
+  font-family: var(--font-code);
+  font-size: 1.35rem;
+  font-weight: 600;
+}
+
+.results-note {
+  margin-top: 0;
+}
+
+/* Correct / Incorrect labels in the results table */
+.chip {
+  display: inline-block;
+  padding: 0.1rem 0.55rem;
+  border-radius: 999px;
+  font-size: 0.85rem;
+  font-weight: 600;
+  color: #ffffff;
+  white-space: nowrap;
+}
+
+.chip-ok {
+  background-color: var(--ok);
+}
+
+.chip-bad {
+  background-color: var(--warn);
+}
+
+.results-table td:last-child {
+  font-family: var(--font-code);
+  white-space: nowrap;
+}
+
+/* Override the striped rows so the result colors stay clear */
+.results-table tbody tr.row-wrong {
+  background-color: var(--warn-soft);
+}
+
+.results-table tbody tr.row-correct {
+  background-color: #ffffff;
+}
+
+
+/* ---------- 10. Small screens ----------
    Under 700px wide, two-column layouts become one column. */
 @media (max-width: 700px) {
   h1 {
@@ -446,5 +867,27 @@ tbody tr:nth-child(even) {
 
   .profile img {
     width: 140px;
+  }
+
+  .quiz-bar {
+    border-radius: 0;
+    margin-left: -1.5rem;     /* bar runs edge to edge on phones */
+    margin-right: -1.5rem;
+  }
+
+  .question {
+    padding: 0.9rem 1rem 0.4rem;
+  }
+
+  .select {
+    min-width: 0;
+    width: 100%;
+  }
+}
+
+/* Respect users who turn off animations in their system settings */
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
   }
 }

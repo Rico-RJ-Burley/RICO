@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   security.html - Security &amp; Speed
-  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  Web Servers class project (IT 3203, Milestones 1&ndash;2) by Rico Burley.
   The header, main menu and footer are the same on every page.
 -->
 <html lang="en">
@@ -19,6 +19,9 @@
 </head>
 <body>
 
+  <!-- Skip link: lets keyboard users jump past the menu (visible only on focus) -->
+  <a class="skip-link" href="#content">Skip to main content</a>
+
   <!-- ===== Site header: title + main menu (same on every page) ===== -->
   <header id="site-header">
     <div class="brand">
@@ -35,6 +38,7 @@
         <li><a href="security.html" class="current" aria-current="page">Security &amp; Speed</a></li>
         <li><a href="concepts.html">Key Concepts</a></li>
         <li><a href="references.html">References</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
@@ -72,6 +76,33 @@
         <div class="card defense"><h3>Rate limiting</h3><p>Automatically slow down anyone sending too many requests too quickly.</p></div>
         <div class="card defense"><h3>Penetration testing</h3><p>Security pros attack their own servers to find flaws first.</p></div>
       </div>
+    </section>
+
+    <!-- Milestone 2: the headers behind the "Add security headers" defense -->
+    <section>
+      <h2>Security Headers in Practice</h2>
+      <p>A security header is a line the server adds to every response telling the browser to turn on extra protection. They take a few lines of server configuration and block whole categories of attacks.</p>
+      <div class="table-wrap">
+        <table>
+          <caption>Common HTTP security headers</caption>
+          <thead>
+            <tr><th scope="col">Header</th><th scope="col">What it tells the browser</th><th scope="col">Helps stop</th></tr>
+          </thead>
+          <tbody>
+            <tr><td><code>Strict-Transport-Security</code></td><td>Only ever connect to this site over HTTPS</td><td>Downgrade attacks and snooping on plain HTTP</td></tr>
+            <tr><td><code>Content-Security-Policy</code></td><td>Only run scripts and load files from the sources listed</td><td>Cross-site scripting (XSS)</td></tr>
+            <tr><td><code>X-Content-Type-Options: nosniff</code></td><td>Trust the file type the server declares instead of guessing</td><td>Files disguised as scripts</td></tr>
+            <tr><td><code>X-Frame-Options</code></td><td>Don&rsquo;t let other sites show this page inside a frame</td><td>Clickjacking</td></tr>
+            <tr><td><code>Referrer-Policy</code></td><td>Limit what the next site learns about where you came from</td><td>Leaking private URLs</td></tr>
+          </tbody>
+        </table>
+      </div>
+      <p>Free scanners such as Mozilla Observatory and Qualys SSL Labs (linked on the <a href="references.html">References</a> page) grade a live site&rsquo;s headers and HTTPS setup in seconds.</p>
+    </section>
+
+    <section>
+      <h2>The OWASP Top 10</h2>
+      <p>OWASP, a nonprofit security community, publishes a list of the ten most critical web application security risks, updated every few years from real breach data. Security teams use it as a checklist. Several attacks on this page fall under its categories: SQL injection and XSS are both <strong>injection</strong> flaws, and outdated server software is covered by <strong>vulnerable and outdated components</strong>, which the 2025 edition widened into a broader software supply chain category. Directory traversal is a form of <strong>broken access control</strong>, which has sat at the top of recent editions of the list.</p>
     </section>
 
     <section>

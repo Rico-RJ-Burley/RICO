@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   references.html - References &amp; Resources
-  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  Web Servers class project (IT 3203, Milestones 1&ndash;2) by Rico Burley.
   The header, main menu and footer are the same on every page.
 -->
 <html lang="en">
@@ -19,6 +19,9 @@
 </head>
 <body>
 
+  <!-- Skip link: lets keyboard users jump past the menu (visible only on focus) -->
+  <a class="skip-link" href="#content">Skip to main content</a>
+
   <!-- ===== Site header: title + main menu (same on every page) ===== -->
   <header id="site-header">
     <div class="brand">
@@ -35,6 +38,7 @@
         <li><a href="security.html">Security &amp; Speed</a></li>
         <li><a href="concepts.html">Key Concepts</a></li>
         <li><a href="references.html" class="current" aria-current="page">References</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
@@ -70,6 +74,10 @@
         <li><a href="https://httpd.apache.org/docs/2.4/getting-started.html">Apache: Getting Started</a>, the official first steps for Apache.</li>
         <li><a href="https://owasp.org/www-project-top-ten/">OWASP Top 10</a>, the most important web application security risks.</li>
         <li><a href="https://docs.github.com/en/pages">GitHub Pages documentation</a>, how this site is hosted.</li>
+        <li><a href="https://developer.mozilla.org/en-US/observatory">Mozilla Observatory</a>, a free scanner that grades a site&rsquo;s security headers.</li>
+        <li><a href="https://www.ssllabs.com/ssltest/">Qualys SSL Labs Server Test</a>, which checks a site&rsquo;s HTTPS and certificate setup.</li>
+        <li><a href="https://developer.mozilla.org/en-US/docs/Learn/JavaScript">MDN: Learn JavaScript</a>, the language behind this site&rsquo;s quiz.</li>
+        <li><a href="quiz.html">Self-assessment quiz</a>, ten questions to check what you learned here.</li>
         <li><a href="https://ksuweb.github.io/IT3203/">IT 3203 course website</a></li>
       </ul>
     </section>

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   concepts.html - Key Concepts
-  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  Web Servers class project (IT 3203, Milestones 1&ndash;2) by Rico Burley.
   The header, main menu and footer are the same on every page.
 -->
 <html lang="en">
@@ -19,6 +19,9 @@
 </head>
 <body>
 
+  <!-- Skip link: lets keyboard users jump past the menu (visible only on focus) -->
+  <a class="skip-link" href="#content">Skip to main content</a>
+
   <!-- ===== Site header: title + main menu (same on every page) ===== -->
   <header id="site-header">
     <div class="brand">
@@ -35,6 +38,7 @@
         <li><a href="security.html">Security &amp; Speed</a></li>
         <li><a href="concepts.html" class="current" aria-current="page">Key Concepts</a></li>
         <li><a href="references.html">References</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
@@ -44,7 +48,7 @@
   <main id="content">
 
     <h1>Key Concepts</h1>
-    <p class="lead">Seven ideas that explain how web servers do their job.</p>
+    <p class="lead">Ten ideas that explain how web servers do their job. When you&rsquo;ve read them, <a href="quiz.html">test yourself with the quiz</a>.</p>
 
     <!-- Each concept has an id so the homepage key terms can link straight to it -->
     <section id="client-server">
@@ -96,6 +100,22 @@
     <section id="scaling">
       <h2>7. Load Balancing and Caching</h2>
       <p>These are the two main ways to handle lots of visitors. <strong>Load balancing</strong> spreads requests across several servers so no single one gets overwhelmed, and keeps the site up if one server fails. <strong>Caching</strong> saves copies of popular responses in fast memory or on a CDN so they can be sent again without redoing the work.</p>
+    </section>
+    <!-- ===== Milestone 2: three new concepts ===== -->
+    <section id="ports">
+      <h2>8. Ports</h2>
+      <p>One server can run many programs at once, so an IP address alone isn&rsquo;t enough to deliver a request. A <strong>port number</strong> tells the server which program should get the traffic, the way an apartment number finishes a street address. A web server <em>listens</em> on port 80 for HTTP and port 443 for HTTPS. Browsers fill these in automatically, which is why you never type them, but you will see other ports during development, such as <code>http://localhost:8080</code>.</p>
+    </section>
+
+    <section id="tls">
+      <h2>9. TLS Certificates</h2>
+      <p>Encryption only helps if you are talking to the right server. A <strong>TLS certificate</strong> is a digital ID card, issued by a trusted certificate authority, that proves a server really controls its domain name. When you open an HTTPS site, the browser and server run a short <strong>TLS handshake</strong>: the server presents its certificate, the browser checks it, and the two agree on secret keys to encrypt everything after that. If the certificate is expired or for the wrong name, the browser shows a warning page.</p>
+      <p class="note"><strong>Free certificates:</strong> Let&rsquo;s Encrypt hands out certificates at no cost. They expire after a few months, so servers use tools that renew them automatically.</p>
+    </section>
+
+    <section id="virtual-hosting">
+      <h2>10. Virtual Hosting</h2>
+      <p>A single web server can host hundreds of different websites. This is called <strong>virtual hosting</strong>. Every HTTP request includes a <code>Host</code> header naming the site the browser wants, and the server uses it to pick the right folder of files. Apache sets this up with <code>&lt;VirtualHost&gt;</code> blocks and Nginx with <code>server</code> blocks. Shared hosting plans and GitHub Pages both work this way, which keeps hosting cheap.</p>
     </section>
   </main>
 

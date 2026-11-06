@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   basics.html - Web Server Basics
-  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  Web Servers class project (IT 3203, Milestones 1&ndash;2) by Rico Burley.
   The header, main menu and footer are the same on every page.
 -->
 <html lang="en">
@@ -19,6 +19,9 @@
 </head>
 <body>
 
+  <!-- Skip link: lets keyboard users jump past the menu (visible only on focus) -->
+  <a class="skip-link" href="#content">Skip to main content</a>
+
   <!-- ===== Site header: title + main menu (same on every page) ===== -->
   <header id="site-header">
     <div class="brand">
@@ -35,6 +38,7 @@
         <li><a href="security.html">Security &amp; Speed</a></li>
         <li><a href="concepts.html">Key Concepts</a></li>
         <li><a href="references.html">References</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
@@ -139,6 +143,39 @@
         <li><strong>HTTPS</strong> adds encryption, like putting your message in a locked box only the server can open.</li>
         <li><strong>HTTP/2</strong> lets the browser ask for many files at once over one connection.</li>
         <li><strong>HTTP/3</strong> works better on phones and unreliable connections.</li>
+      </ul>
+    </section>
+
+    <!-- Milestone 2: a real request and response, side by side -->
+    <section>
+      <h2>What an HTTP Conversation Looks Like</h2>
+      <p>HTTP messages are plain text, so you can read them. Here is roughly what your browser sends to load this site&rsquo;s homepage, and the start of what GitHub Pages sends back.</p>
+      <div class="split">
+        <div>
+          <h3>The request</h3>
+<pre><code>GET /index.html HTTP/1.1
+Host: example.github.io
+User-Agent: Mozilla/5.0 (Windows NT 10.0)
+Accept: text/html
+Accept-Encoding: gzip, br</code></pre>
+        </div>
+        <div>
+          <h3>The response</h3>
+<pre><code>HTTP/1.1 200 OK
+Content-Type: text/html; charset=utf-8
+Content-Encoding: gzip
+Cache-Control: max-age=600
+Content-Length: 2314
+
+&lt;!DOCTYPE html&gt; ...</code></pre>
+        </div>
+      </div>
+      <ul>
+        <li><strong>The first line</strong> of the request names the method, the path and the HTTP version. The first line of the response gives the status code.</li>
+        <li><strong><code>Host</code></strong> says which website is wanted, so one server can host many sites (see <a href="concepts.html#virtual-hosting">virtual hosting</a>).</li>
+        <li><strong><code>Accept-Encoding</code></strong> tells the server the browser can unzip compressed files, and <code>Content-Encoding</code> confirms the server compressed this one.</li>
+        <li><strong><code>Cache-Control</code></strong> tells the browser how many seconds it may reuse its saved copy before asking again.</li>
+        <li><strong>A blank line</strong> separates the headers from the body, which holds the HTML itself.</li>
       </ul>
     </section>
 

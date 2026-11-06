@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   about.html - About
-  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  Web Servers class project (IT 3203, Milestones 1&ndash;2) by Rico Burley.
   The header, main menu and footer are the same on every page.
 -->
 <html lang="en">
@@ -19,6 +19,9 @@
 </head>
 <body>
 
+  <!-- Skip link: lets keyboard users jump past the menu (visible only on focus) -->
+  <a class="skip-link" href="#content">Skip to main content</a>
+
   <!-- ===== Site header: title + main menu (same on every page) ===== -->
   <header id="site-header">
     <div class="brand">
@@ -35,6 +38,7 @@
         <li><a href="security.html">Security &amp; Speed</a></li>
         <li><a href="concepts.html">Key Concepts</a></li>
         <li><a href="references.html">References</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
         <li><a href="about.html" class="current" aria-current="page">About</a></li>
       </ul>
     </nav>
@@ -77,14 +81,14 @@
         <li>Troubleshooting and fixing computer hardware and software issues</li>
         <li>Setting up and maintaining a gaming and streaming setup</li>
         <li>Cybersecurity fundamentals</li>
-        <li>HTML, CSS and publishing websites with GitHub Pages</li>
+        <li>HTML, CSS, JavaScript and publishing websites with GitHub Pages</li>
       </ul>
     </section>
 
     <section>
       <h2>About This Project</h2>
       <p>This website is my research project for IT 3203 at Kennesaw State University. The topic is web servers: the computers and programs that deliver every website on the internet. I chose this topic because it connects my cybersecurity concentration to something I use every day, from loading a game&rsquo;s website to streaming online.</p>
-      <p>The site is built with plain HTML and one CSS file, and it is hosted on GitHub Pages, which is itself a static web server. More research and content will be added in the next two milestones.</p>
+      <p>The site is built with plain HTML and one CSS file, and it is hosted on GitHub Pages, which is itself a static web server. In Milestone 2 I added a <a href="quiz.html">self-assessment quiz</a> built with HTML form controls and JavaScript, three new key concepts, a look at real HTTP messages, a section on security headers and the OWASP Top 10, and ten more references.</p>
     </section>
   </main>
 

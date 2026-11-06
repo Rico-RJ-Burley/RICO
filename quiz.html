@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<!--
+  quiz.html - Self-Assessment Quiz (Milestone 2)
+  Web Servers class project (IT 3203, Milestones 1&ndash;2) by Rico Burley.
+
+  The questions are written in HTML so the page still makes sense on its own.
+  All behavior (timer, grading, results, reset) lives in js/quiz.js,
+  and the answer key is stored there, not in this file.
+
+  Question types used:
+    - Fill in the blank ...... text <input>          (Q1, Q2, Q3)
+    - Multiple choice ........ radio buttons          (Q4, Q5, Q6, Q7)
+    - Multi-selection ........ checkboxes             (Q8, Q9)
+    - Pick from a list ....... <select> drop-down     (Q10)
+-->
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Ten-question self-assessment quiz on web servers: HTTP, DNS, status codes, server software, security and speed.">
+  <title>Quiz | Web Servers</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=IBM+Plex+Mono:wght@400;600&amp;family=IBM+Plex+Sans:wght@400;600;700&amp;display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="css/styles.css">
+  <!-- defer: the script runs after the page HTML has loaded -->
+  <script src="js/quiz.js" defer></script>
+</head>
+<body>
+
+  <!-- Skip link: lets keyboard users jump past the menu (visible only on focus) -->
+  <a class="skip-link" href="#content">Skip to main content</a>
+
+  <!-- ===== Site header: title + main menu (same on every page) ===== -->
+  <header id="site-header">
+    <div class="brand">
+      <a class="site-title" href="index.html">Web Servers</a>
+      <!-- quiz.js changes GET to POST when the quiz is submitted, like a real form -->
+      <p class="request-line"><span class="method" id="request-method">GET</span> /quiz.html <span class="status">200 OK</span></p>
+    </div>
+    <nav id="main-nav" aria-label="Main menu">
+      <ul>
+        <li><a href="index.html">Home</a></li>
+        <li><a href="basics.html">Basics</a></li>
+        <li><a href="history.html">History</a></li>
+        <li><a href="software.html">Server Software</a></li>
+        <li><a href="security.html">Security &amp; Speed</a></li>
+        <li><a href="concepts.html">Key Concepts</a></li>
+        <li><a href="references.html">References</a></li>
+        <li><a href="quiz.html" class="current" aria-current="page">Quiz</a></li>
+        <li><a href="about.html">About</a></li>
+      </ul>
+    </nav>
+  </header>
+
+  <main id="content">
+
+    <h1>Self-Assessment Quiz</h1>
+    <p class="lead">Ten questions on what you read across this site. You have 10 minutes, and you need 70 out of 100 to pass.</p>
+
+    <!-- ===== Results panel =====
+         Hidden until the quiz is submitted. quiz.js fills it in.
+         aria-live makes screen readers announce the result when it appears. -->
+    <section id="quiz-results" class="results" hidden aria-live="polite" tabindex="-1">
+      <div class="results-summary">
+        <p class="results-verdict" id="result-verdict"></p>
+        <dl class="results-stats">
+          <div><dt>Score</dt><dd id="result-score"></dd></div>
+          <div><dt>Correct</dt><dd id="result-correct"></dd></div>
+          <div><dt>Time spent</dt><dd id="result-time"></dd></div>
+        </dl>
+        <p class="results-note" id="result-note"></p>
+      </div>
+      <div class="table-wrap">
+        <table class="results-table">
+          <caption>Question by question</caption>
+          <thead>
+            <tr><th scope="col">#</th><th scope="col">Result</th><th scope="col">Your answer</th><th scope="col">Correct answer</th><th scope="col">Points</th></tr>
+          </thead>
+          <!-- quiz.js builds one row per question here -->
+          <tbody id="result-rows"></tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- ===== Quiz form =====
+         novalidate: quiz.js decides what happens with blank answers
+         (blank answers are simply marked wrong). -->
+    <form id="quiz-form" class="quiz" novalidate>
+
+      <!-- Timer bar sticks to the top of the screen while scrolling -->
+      <div class="quiz-bar">
+        <p class="timer" id="timer" role="timer" aria-label="Time remaining">10:00</p>
+        <p class="quiz-progress" id="progress">0 of 10 answered</p>
+        <button type="button" class="btn btn-primary" id="start-btn">Start quiz</button>
+      </div>
+
+      <!-- Every question is a fieldset; disabled until Start is pressed.
+           data-q is the question number quiz.js uses to look up the answer. -->
+      <fieldset id="quiz-questions" class="quiz-questions" disabled>
+        <legend class="visually-hidden">Quiz questions</legend>
+
+        <!-- ---------- Fill in the blank ---------- -->
+        <fieldset class="question" data-q="1">
+          <legend><span class="q-num">1</span> Fill in the blank</legend>
+          <p class="q-text">
+            <label for="q1">DNS turns a domain name like <code>github.io</code> into the server&rsquo;s numeric</label>
+            <input type="text" id="q1" name="q1" class="blank" autocomplete="off" spellcheck="false" size="8">
+            address.
+          </p>
+          <p class="q-feedback" aria-live="polite"></p>
+        </fieldset>
+
+        <fieldset class="question" data-q="2">
+          <legend><span class="q-num">2</span> Fill in the blank</legend>
+          <p class="q-text">
+            <label for="q2">The three-digit HTTP status code that means &ldquo;Not Found&rdquo; is</label>
+            <input type="text" id="q2" name="q2" class="blank" inputmode="numeric" maxlength="3" autocomplete="off" size="4">.
+          </p>
+          <p class="q-feedback" aria-live="polite"></p>
+        </fieldset>
+
+        <fieldset class="question" data-q="3">
+          <legend><span class="q-num">3</span> Fill in the blank</legend>
+          <p class="q-text">
+            <label for="q3">By default, secure HTTPS traffic uses port number</label>
+            <input type="text" id="q3" name="q3" class="blank" inputmode="numeric" maxlength="4" autocomplete="off" size="5">.
+          </p>
+          <p class="q-feedback" aria-live="polite"></p>
+        </fieldset>
+
+        <!-- ---------- Multiple choice: one correct answer (radio buttons) ---------- -->
+        <fieldset class="question" data-q="4">
+          <legend><span class="q-num">4</span> Who built the first web server at CERN in 1990?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="q4" value="sysoev"> Igor Sysoev</label>
+            <label class="choice"><input type="radio" name="q4" value="berners-lee"> Tim Berners-Lee</label>
+            <label class="choice"><input type="radio" name="q4" value="gates"> Bill Gates</label>
+            <label class="choice"><input type="radio" name="q4" value="stenberg"> Daniel Stenberg</label>
+          </div>
+          <p class="q-feedback" aria-live="polite"></p>
+        </fieldset>
+
+        <fieldset class="question" data-q="5">
+          <legend><span class="q-num">5</span> According to W3Techs (2025), which web server software runs the most websites?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="q5" value="apache"> Apache</label>
+            <label class="choice"><input type="radio" name="q5" value="iis"> Microsoft IIS</label>
+            <label class="choice"><input type="radio" name="q5" value="nginx"> Nginx</label>
+            <label class="choice"><input type="radio" name="q5" value="litespeed"> LiteSpeed</label>
+          </div>
+          <p class="q-feedback" aria-live="polite"></p>
+        </fieldset>
+
+        <fieldset class="question" data-q="6">
+          <legend><span class="q-num">6</span> Which HTTP method does a browser use to send the contents of a form, like a login box, to the server?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="q6" value="get"> <code>GET</code></label>
+            <label class="choice"><input type="radio" name="q6" value="post"> <code>POST</code></label>
+            <label class="choice"><input type="radio" name="q6" value="delete"> <code>DELETE</code></label>
+            <label class="choice"><input type="radio" name="q6" value="head"> <code>HEAD</code></label>
+          </div>
+          <p class="q-feedback" aria-live="polite"></p>
+        </fieldset>
+
+        <fieldset class="question" data-q="7">
+          <legend><span class="q-num">7</span> What does a reverse proxy do?</legend>
+          <div class="choices">
+            <label class="choice"><input type="radio" name="q7" value="dns"> Turns domain names into IP addresses</label>
+            <label class="choice"><input type="radio" name="q7" value="front"> Receives every request first and passes it to the right server behind it</label>
+            <label class="choice"><input type="radio" name="q7" value="browser"> Speeds up the visitor&rsquo;s browser by caching pages on their computer</label>
+            <label class="choice"><input type="radio" name="q7" value="vpn"> Hides the visitor&rsquo;s IP address from every website they visit</label>
+          </div>
+          <p class="q-feedback" aria-live="polite"></p>
+        </fieldset>
+
+        <!-- ---------- Multi-selection: more than one correct answer (checkboxes) ---------- -->
+        <fieldset class="question" data-q="8">
+          <legend><span class="q-num">8</span> Which of these are attacks against web servers? <span class="q-hint">Select all that apply.</span></legend>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="q8" value="ddos"> DDoS flooding</label>
+            <label class="choice"><input type="checkbox" name="q8" value="sqli"> SQL injection</label>
+            <label class="choice"><input type="checkbox" name="q8" value="lb"> Load balancing</label>
+            <label class="choice"><input type="checkbox" name="q8" value="xss"> Cross-site scripting (XSS)</label>
+            <label class="choice"><input type="checkbox" name="q8" value="cdn"> Content delivery network</label>
+          </div>
+          <p class="q-feedback" aria-live="polite"></p>
+        </fieldset>
+
+        <fieldset class="question" data-q="9">
+          <legend><span class="q-num">9</span> Which techniques mainly make a web server <em>faster</em>? <span class="q-hint">Select all that apply.</span></legend>
+          <div class="choices">
+            <label class="choice"><input type="checkbox" name="q9" value="compression"> Compression with gzip or Brotli</label>
+            <label class="choice"><input type="checkbox" name="q9" value="pentest"> Penetration testing</label>
+            <label class="choice"><input type="checkbox" name="q9" value="caching"> Caching popular pages in memory</label>
+            <label class="choice"><input type="checkbox" name="q9" value="cdn"> Using a content delivery network</label>
+            <label class="choice"><input type="checkbox" name="q9" value="logs"> Reading the access logs</label>
+          </div>
+          <p class="q-feedback" aria-live="polite"></p>
+        </fieldset>
+
+        <!-- ---------- Pick from a list (drop-down) ---------- -->
+        <fieldset class="question" data-q="10">
+          <legend><span class="q-num">10</span> Pick from the list</legend>
+          <p class="q-text">
+            <label for="q10">Which file lets an Apache site owner change settings for a single folder?</label>
+          </p>
+          <select id="q10" name="q10" class="select">
+            <option value="">Choose a file&hellip;</option>
+            <option value="nginx.conf">nginx.conf</option>
+            <option value="web.config">web.config</option>
+            <option value="htaccess">.htaccess</option>
+            <option value="httpd.conf">httpd.conf</option>
+          </select>
+          <p class="q-feedback" aria-live="polite"></p>
+        </fieldset>
+      </fieldset>
+
+      <!-- Submit grades the quiz; Reset clears everything and starts over -->
+      <div class="quiz-actions">
+        <button type="submit" class="btn btn-primary" id="submit-btn" disabled>Submit answers</button>
+        <button type="button" class="btn btn-secondary" id="reset-btn">Reset quiz</button>
+      </div>
+    </form>
+
+    <p class="quiz-footnote">Every question is worth 10 points. For &ldquo;select all that apply&rdquo; questions, you need every correct option and no wrong ones to earn the points. Not sure about an answer? Review <a href="basics.html">Basics</a>, <a href="software.html">Server Software</a>, <a href="security.html">Security &amp; Speed</a> and <a href="concepts.html">Key Concepts</a> first.</p>
+  </main>
+
+  <!-- ===== Footer with the class project note (same on every page) ===== -->
+  <footer id="site-footer">
+    <p>This website is a class project for IT 3203 at Kennesaw State University.</p>
+    <p>Course website: <a href="https://ksuweb.github.io/IT3203/">ksuweb.github.io/IT3203</a></p>
+    <p>&copy; 2026 Rico Burley</p>
+  </footer>
+
+</body>
+</html>

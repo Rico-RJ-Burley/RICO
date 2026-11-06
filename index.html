@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <!--
   index.html - Home
-  Web Servers class project (IT 3203, Milestone 1) by Rico Burley.
+  Web Servers class project (IT 3203, Milestones 1&ndash;2) by Rico Burley.
   The header, main menu and footer are the same on every page.
 -->
 <html lang="en">
@@ -19,6 +19,9 @@
 </head>
 <body>
 
+  <!-- Skip link: lets keyboard users jump past the menu (visible only on focus) -->
+  <a class="skip-link" href="#content">Skip to main content</a>
+
   <!-- ===== Site header: title + main menu (same on every page) ===== -->
   <header id="site-header">
     <div class="brand">
@@ -35,6 +38,7 @@
         <li><a href="security.html">Security &amp; Speed</a></li>
         <li><a href="concepts.html">Key Concepts</a></li>
         <li><a href="references.html">References</a></li>
+        <li><a href="quiz.html">Quiz</a></li>
         <li><a href="about.html">About</a></li>
       </ul>
     </nav>
@@ -71,6 +75,9 @@
         <li><a href="concepts.html#static-dynamic">Static vs. dynamic</a></li>
         <li><a href="concepts.html#reverse-proxy">Reverse proxy</a></li>
         <li><a href="concepts.html#scaling">Load balancing &amp; caching</a></li>
+        <li><a href="concepts.html#ports">Ports</a></li>
+        <li><a href="concepts.html#tls">TLS certificates</a></li>
+        <li><a href="concepts.html#virtual-hosting">Virtual hosting</a></li>
       </ul>
     </section>
 
@@ -80,7 +87,7 @@
       <ol class="card-grid">
         <li class="card">
           <h3><a href="basics.html">Web Server Basics</a></h3>
-          <p>What a web server is, hardware vs. software, static vs. dynamic, and how a page request works step by step.</p>
+          <p>What a web server is, hardware vs. software, static vs. dynamic, and what a real HTTP request and response look like.</p>
         </li>
         <li class="card">
           <h3><a href="history.html">History of Web Servers</a></h3>
@@ -92,15 +99,19 @@
         </li>
         <li class="card">
           <h3><a href="security.html">Security &amp; Speed</a></h3>
-          <p>How web servers get attacked, how they are protected, and how they are made faster.</p>
+          <p>How web servers get attacked, security headers, the OWASP Top 10, and how servers are made faster.</p>
         </li>
         <li class="card">
           <h3><a href="concepts.html">Key Concepts</a></h3>
-          <p>Seven core ideas you need to understand web servers.</p>
+          <p>Ten core ideas you need to understand web servers.</p>
         </li>
         <li class="card">
           <h3><a href="references.html">References &amp; Resources</a></h3>
           <p>Sources used for this project and good places to keep learning.</p>
+        </li>
+        <li class="card">
+          <h3><a href="quiz.html">Self-Assessment Quiz</a></h3>
+          <p>Ten timed questions to check what you learned, with your score and answers shown right away.</p>
         </li>
         <li class="card">
           <h3><a href="about.html">About</a></h3>
